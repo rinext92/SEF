@@ -1,0 +1,4 @@
+#Mon Oct 01 11:42:08 SGT 2018
+base.0=C\:\\wamp64\\www\\apps\\sisef app\\Eoffice\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
