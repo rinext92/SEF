@@ -76,17 +76,17 @@ function createList(row){
 return "<li class='listitem'>"
         + "<a href='javacript:void(0)' data-transition='slide' class='ui-btn ui-corner-all ui-shadow ui-btn-inline' "
         + "onclick='viewFile(\""
-        + encodeURI(row.subject)
+        + escape(row.subject)
         + "\", \""
-        +encodeURI(row.from)
+        +escape(row.from)
         + "\", \""
-        +encodeURI(row.file_name)
+        +escape(row.file_name)
         + "\", \""
-        +encodeURI(row.size)
+        +escape(row.size)
         + "\", \""
-        +encodeURI(row.file_name_hashcode)
+        +escape(row.file_name_hashcode)
         + "\", \""
-        +encodeURI(row.notes) + "\")'>"
+        +escape(row.notes) + "\")'>"
         // +"onclick='testA(\""+tt+"\")' >"
         +"<h5>"+row.subject+"</h5>"
         +"<p>"+row.from+"</p>"
@@ -96,31 +96,38 @@ return "<li class='listitem'>"
 
 // viewFile
 function viewFile(subject,from,file_name,size,hashcode,notes){
-    var noteData = "";
+    // var noteData = "";
 
-    if(decodeURI(notes) == 'null'){
-        noteData = '<li style="white-space:normal;">-</li>'
-    }else{
-        noteData ='<li style="white-space:normal;">'+decodeURI(notes)+'</li>'
-    } 
+    // if(decodeURI(notes) == 'null'){
+    //     noteData = '<li style="white-space:normal;">-</li>'
+    // }else{
+    //     noteData ='<li style="white-space:normal;">'+decodeURI(notes)+'</li>'
+    // } 
 
-    var viewPageFile = $('<div data-role="page" ><div data-role="header"><h1>'
-                        +decodeURI(from)+ '</h1>'
-                        +'<a href="#inbox" data-direction="reverse" data-transition="slide" data-icon="arrow-l" data-iconpos="notext"></a>'
-                        +'</div><div data-role="content"><ul data-role="listview">'
-                        +'<li data-role="list-divider">Subject</li>'
-                        +'<li style="white-space:normal;">'+decodeURI(subject)+'</li>'
-                        +'<li data-role="list-divider">From</li>'
-                        +'<li style="white-space:normal;">'+decodeURI(from)+'</li>'
-                        +'<li data-role="list-divider">Note</li>'
-                        +noteData
-                        +'<li data-role="list-divider"></li>'
-                        +'<li><a href="#" onclick="openInAppBrowser(\''+hashcode+'\')">'
-                        +'<i class="fa fa-paperclip"></i>'+decodeURI(file_name)+'&nbsp;('+decodeURI(size)+' Bytes)</a></li>'
-                        );
-    viewPageFile.appendTo( $.mobile.pageContainer);
-    
-    $.mobile.changePage( viewPageFile, {transition:"slide"});
+    // var viewPageFile = $("<div data-role='page' ><div data-role='header'><h1>"
+    //                     +decodeURI(from)+ "</h1>"
+    //                     +"<a href='#inbox' data-direction='reverse' data-transition='slide' data-icon='arrow-l' data-iconpos='notext'></a>"
+    //                     +"</div><div data-role='content'><ul data-role='listview'>"
+    //                     +"<li data-role='list-divider'>Subject</li>"
+    //                     +"<li style='white-space:normal;'>"+decodeURI(subject)+"</li>"
+    //                     +"<li data-role='list-divider'>From</li>"
+    //                     +"<li style='white-space:normal;'>"+decodeURI(from)+"</li>"
+    //                     +"<li data-role='list-divider'>Note</li>"
+    //                     +noteData
+    //                     +"<li data-role='list-divider'></li>"
+    //                     +"<li><a href='#' onclick='openInAppBrowser(\""+hashcode+"\")'>"
+    //                     +"<i class='fa fa-paperclip'></i>"+decodeURI(file_name)+"&nbsp;("+decodeURI(size)+" Bytes)</a></li>"
+    //                     );
+    // viewPageFile.appendTo( $.mobile.pageContainer);
+    localStorage.setItem('subject',unescape(subject));
+    localStorage.setItem('from',unescape(from));
+    localStorage.setItem('file_name',unescape(file_name));
+    localStorage.setItem('size',unescape(size));
+    localStorage.setItem('hashcode',unescape(hashcode));
+    localStorage.setItem('notes',unescape(notes));
+
+    $.mobile.changePage( 'file.html', {transition:"slide"});
+    // window.location = "file.html";
 }
 
 function openInAppBrowser(a){

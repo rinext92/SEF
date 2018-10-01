@@ -34,12 +34,14 @@
              #page #header{
                 background-color: #84e6e6;
              }
+           
          </style>
         
      </head>
 <body onload="loadFile()">
 
     <div data-role="page" id="viewFile">
+            <script type="text/javascript" src="../js/file.js"></script>
         <div data-role="header" data-position="fixed" id="header">
             <h1>View</h1>
             <a href="#" data-rel="back" data-icon="arrow-l" data-iconpos="notext"></a>
@@ -48,11 +50,11 @@
         <div data-role="main" class="ui-content">
             <ul data-role="listview">
                 <li data-role="list-divider">Subject</li>
-                <li id="subject"></li>
+                <li id="subject" style="white-space : normal;"></li>
                 <li data-role="list-divider">From</li>
-                <li id="from"></li>
+                <li id="from" style="white-space : normal;"></li>
                 <li data-role="list-divider">Note</li>
-                <li id="note"></li>
+                <li id="notes" style="white-space : normal;"></li>
                 <li data-role="list-divider"></li>
                 <li id="linkFile">
                     <!-- <a href="#" onclick="openInAppBrowser(\''+hashcode+'\')">
@@ -65,6 +67,6 @@
     </div>
 
 
-    <script type="text/javascript" src="../js/viewFile.js"></script>
+    
 </body>
 </html>
